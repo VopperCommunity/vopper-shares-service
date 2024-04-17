@@ -10,6 +10,7 @@ export class CreateUserDto {
   @IsEmail()
   readonly email: string;
 
+  @IsString()
   readonly password: string
 
   @IsArray()

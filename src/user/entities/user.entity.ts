@@ -14,14 +14,17 @@ export class UserEntity {
   @Column('text')
   email: string;
 
+  @Column('text')
+  password: string
+
   @Column('text', { array: true })
   preferences: string[];
 
-  @Column('text', { array: true })
-  tecnologies: string[];
-
   @Column('text')
   description: string;
+
+  @Column('text', { array: true })
+  tecnologies: string[];
 
   // @Column('text')
   // password: string

@@ -9,6 +9,8 @@ import { AdminService } from './admin/admin.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './user/entities/user.entity';
 import config from './config/config';
+import { JwtModule } from '@nestjs/jwt';
+import { constants } from './user/constants/strategy.guard';
 
 @Module({
   imports: [
@@ -31,11 +33,14 @@ import config from './config/config';
       entities: [UserEntity],
       synchronize: true, // ? sincroniza los cambios de las entities
     }),
-
     TypeOrmModule.forFeature([UserEntity]),
+    JwtModule.register({
+      secret: constants.secret,
+      signOptions: { expiresIn: '24h' }
+    })
   ],
 
   controllers: [UserController, AdminController],
   providers: [UserService, AdminService],
 })
-export class AppModule {}
+export class AppModule { }
